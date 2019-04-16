@@ -13,7 +13,7 @@ DIFF="$(($NOW-$CLAIM_TIME))"
 DIFF_CHECK=86520
 DELAY=$(($DIFF / 60))
 
-if [ $DIFF > $DIFF_CHECK ]; then
+if [ $DIFF -gt $DIFF_CHECK ]; then
     echo "No rewards have been claimed in $DELAY minutes. Please check the claimrewards server." | mail -s "EOS CLAIMREWARDS ISSUE" $EMAIL
     exit 1
 fi
