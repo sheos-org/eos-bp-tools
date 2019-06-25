@@ -7,7 +7,7 @@ EMAIL="<ENTER DESTINATION EMAIL>"
 
 # Do not modify these unless you know what you're changing.
 LAST_CLAIM=$(curl -sX POST "$API/v1/chain/get_table_rows" -d '{"scope":"eosio", "code":"eosio", "table":"producers", "json":true, "limit":10000}' | jq --arg prd "$PRODUCER" -r '.rows[] | select(.owner==$prd) | .last_claim_time')
-CLAIM_TIME=$(date -d "$LAST_CLAIM" +"%s")
+CLAIM_TIME=$(date -d "$LAST_CLAIM GMT" +"%s")
 NOW=$(date +"%s")
 DIFF="$(($NOW-$CLAIM_TIME))"
 DIFF_CHECK=86520
